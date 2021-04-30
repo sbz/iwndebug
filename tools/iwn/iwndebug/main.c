@@ -185,7 +185,7 @@ main(int argc, char *argv[]) {
 
 	if (argc <= 2) {
 		/* special no +/-, just disable debug using none */
-		if (strncmp(argv[1], iwn_levels[0].level, 4) == 0) {
+		if (strncasecmp(argv[1], iwn_levels[0].level, 4) == 0) {
 			value = iwn_levels[0].value;
 			goto skiploop;
 		}
@@ -195,10 +195,10 @@ main(int argc, char *argv[]) {
 
 	while (narg <= argc-1) {
 		for (i=0; i< nitems(iwn_levels); i++) {
-			if (argv[narg][0] == '+' && strcmp(argv[narg]+1, iwn_levels[i].level) == 0) {
+			if (argv[narg][0] == '+' && strcasecmp(argv[narg]+1, iwn_levels[i].level) == 0) {
 				found = 1;
 				value |= iwn_levels[i].value;
-			} else if (argv[narg][0] == '-' && strcmp(argv[narg]+1, iwn_levels[i].level) == 0) {
+			} else if (argv[narg][0] == '-' && strcasecmp(argv[narg]+1, iwn_levels[i].level) == 0) {
 				found = 1;
 				value ^= iwn_levels[i].value;
 
