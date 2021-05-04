@@ -98,7 +98,6 @@ iwn_get_level(const char *oid) {
 		return (1);
 
 	return (curlevel);
-
 }
 
 static char *
@@ -118,7 +117,6 @@ iwn_get_interface(const char *oid) {
 		return (NULL);
 	}
 
-
 	return device;
 }
 
@@ -128,7 +126,7 @@ iwn_print_levels(FILE *stream) {
 
 	fprintf(stream, "Possible debug levels:\n");
 
-	for (i=0; i< nitems(iwn_levels); i++) {
+	for (i = 0; i< nitems(iwn_levels); i++) {
 		fprintf(stream, "\t%s\n", iwn_levels[i].level);
 	}
 }
@@ -154,20 +152,16 @@ main(int argc, char *argv[]) {
 	oid = NULL;
 	ifname = NULL;
 
-
 	ifname = iwn_get_interface("net.wlan.devices");
 	if (ifname == NULL || strncmp(ifname, "iwn", 3) != 0)
 		errx(EX_DATAERR, "could not find iwn device");
 
 	asprintf(&oid, "dev.iwn.%s.debug", ifname+3);
-
-
 	value = iwn_get_level(oid);
 
 	if (argc == 1) {
 		goto skiploop;
 	}
-
 
 	if (!strncmp(argv[1], "-?", 2)) {
 		iwn_print_levels(stderr);
@@ -178,7 +172,6 @@ main(int argc, char *argv[]) {
 		usage();
 		exit(EX_USAGE);
 	}
-
 
 	if (argc <= 2) {
 		/* special no +/-, just disable debug using none */
@@ -191,7 +184,7 @@ main(int argc, char *argv[]) {
 	narg = 1;
 
 	while (narg <= argc-1) {
-		for (i=0; i< nitems(iwn_levels); i++) {
+		for (i = 0; i< nitems(iwn_levels); i++) {
 			if (argv[narg][0] == '+' && strcasecmp(argv[narg]+1, iwn_levels[i].level) == 0) {
 				found = 1;
 				value |= iwn_levels[i].value;
