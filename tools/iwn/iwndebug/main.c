@@ -98,7 +98,6 @@ iwn_get_level(const char *oid) {
 		return (1);
 
 	return (curlevel);
-
 }
 
 static char *
@@ -118,7 +117,6 @@ iwn_get_interface(const char *oid) {
 		return (NULL);
 	}
 
-
 	return device;
 }
 
@@ -128,7 +126,7 @@ iwn_print_levels(FILE *stream) {
 
 	fprintf(stream, "Possible debug levels:\n");
 
-	for (i=0; i< nitems(iwn_levels); i++) {
+	for (i = 0; i< nitems(iwn_levels); i++) {
 		fprintf(stream, "\t%s\n", iwn_levels[i].level);
 	}
 }
@@ -191,7 +189,7 @@ main(int argc, char *argv[]) {
 	narg = 1;
 
 	while (narg <= argc-1) {
-		for (i=0; i< nitems(iwn_levels); i++) {
+		for (i = 0; i< nitems(iwn_levels); i++) {
 			if (argv[narg][0] == '+' && strcasecmp(argv[narg]+1, iwn_levels[i].level) == 0) {
 				found = 1;
 				value |= iwn_levels[i].value;
