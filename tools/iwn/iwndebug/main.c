@@ -26,6 +26,7 @@
  * SUCH DAMAGE.
  *
  */
+#include <sys/param.h>
 #include <sys/types.h>
 #include <sys/sysctl.h>
 
@@ -77,10 +78,6 @@ static struct {
 	{"fatal", 	IWN_DEBUG_FATAL 	},
 	{"any", 	IWN_DEBUG_ANY 		},
 };
-
-#ifndef nitems
-#define nitems(array)	(sizeof((array)) / sizeof((array)[0]))
-#endif
 
 static int
 iwn_set_level(const char *oid, int level) {
